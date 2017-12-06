@@ -1,0 +1,13 @@
+<div class="text-center">
+    <nav aria-label="pagination">
+        <% if(pages > 1){ %>
+        <ul class="pagination">
+            <li <%=(currentPage === 1 ? "class=disabled" : ' ')%>><a <%=(currentPage === 1 ? "class=inactive" : ' ')%> href="<%=link%>p=<%= currentPage - 1%>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            <% for(let i = 1; i <= pages; i++){ %>
+                <li <%=(i === currentPage ? 'class=active' : ' ')%>><a href="<%=link%>p=<%= i%>" ><%=i%> <span class="sr-only">(current)</span></a></li>
+            <% } %>
+            <li <%=(currentPage === pages ? "class=disabled" : ' ')%>><a <%=(currentPage === pages ? "class=inactive" : ' ')%> href="<%=link%>p=<%= currentPage + 1%>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        </ul>
+        <% } %>
+    </nav>
+</div>

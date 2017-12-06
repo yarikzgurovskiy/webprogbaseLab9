@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Docs</title>
+    <meta name="description" content="API Docs">
+    <meta name="author" content="Yaroslav Zghurovskyi">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/journal/bootstrap.min.css" type="text/css">
+    <link rel="icon" href="images/icon.png">
+</head>
+<body>
+    <% include partials/navbar %>
+    <div class="container">
+        <div class="page-header center">
+            <h1>REST API v1</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <h3>Точки доступу</h3>
+                <p>
+                    Весь доступ до API відбувається через HTTPS та базовий URL <code><%=link%></code> Всі дані відправляються і отримуються у форматі JSON.
+                </p>
+                <p>Час подається у форматі ISO 8601:
+                    <pre><code>YYYY-MM-DDTHH:MM:SSZ</code></pre>
+                    Коренева точка доступу до REST API:
+                    <pre><code>GET <%=link%></code></pre>
+                    Повертає словник зі всіма ресурсами, що доступні у API.
+                </p>
+                <h3>Аутентифікація</h3>
+                <p>
+                    Ресурси потребують базової аутентифікації для доступу до них. Логіном слугує ваш <code>username</code>, а паролем <code>password</code>
+                    Якщо запит до ресурсу не міститиме даних користувача, то відповіддю буде статус <code>401 Unauthorized</code> і тіло:
+                    <pre><code class="lang-json">{ "message": "Requires authentication" }</code></pre>
+                </p>
+                <h3>Список проектів</h3>
+                <p><code>GET api/v1/projects</code></p>
+                <h3>Отримати проект</h3>
+                <p><code>GET api/v1/project/:project_id</code></p>
+                <p>Відповідь:</p>
+                <pre><code class="lang-json">
+    {
+        "_id": "5a1de23eb150aa411a13df76",
+        "name": "asdasd",
+        "lead": "Lkjkj Kkjkjk",
+        "preview": "sdkjflsjkdf",
+        "members": 4,
+        "team_velocity": 6,
+        "about": "sdfsdf",
+        "id": "asdasd",
+        "imageUrl": "https://res.cloudinary.com/hp54bfcje/image/upload/v1511907902/asdasd.png",
+        "__v": 0,
+        "start_date": "2017-11-28T22:24:58.406Z"
+    }
+                </code></pre>
+                <h3>Створити проект</h3>
+                <p><code>POST api/v1/projects</code></p>
+                <p>Відповідь:</p>
+                <pre><code class="lang-json">
+    {
+        "message": "Project has been successfully created"
+    }
+                </code></pre>
+                <h3>Видалити проект</h3>
+                <p><code>POST api/v1/projects/:project_id</code></p>
+                <p>Відповідь:</p>
+                <pre><code class="lang-json">
+    {
+        "message": "Project with id(slkdfj) has been successfully deleted",
+        "deleted project": {
+            "_id": "5a1ef64b11317323976ae72f",
+            "name": "slkdfj",
+            "lead": "Jjhjh Jjhjh",
+            "preview": "skdfk",
+            "members": 87,
+            "team_velocity": 4,
+            "about": "kjdfg",
+            "id": "slkdfj",
+            "imageUrl": "https://res.cloudinary.com/hp54bfcje/image/upload/v1511978571/slkdfj.png",
+            "__v": 0,
+            "start_date": "2017-11-29T18:00:22.553Z"
+        }
+    }
+                </code></pre>
+                <h3>Отримати інформацію про користувача</h3>
+                <p><code>GET api/v1/users/:user_id</code></p>
+                <p>Відповідь:</p>
+                <pre><code class="lang-json">
+    {
+        "name": "Yaroslav",
+        "surname": "Zghurovskyi",
+        "username": "yarik",
+        "email": "yarik@gmail.com",
+        "role": "registered"
+    }
+                </code></pre>
+                <h3>Отримати аутентифікованого користувача</h3>
+                <p><code>GET api/v1/user</code></p>
+                <p>Відповідь:</p>
+                <pre><code class="lang-json">
+    {
+        "name": "Yaroslav",
+        "surname": "Zghurovskyi",
+        "username": "yarik",
+        "email": "yarik@gmail.com",
+        "role": "registered",
+        "registrationDate": "2017-11-28T23:20:11.419Z",
+        "avatarUrl": "https://res.cloudinary.com/hp54bfcje/image/upload/v1511911210/yarik.jpg"
+    }
+                </code></pre>
+            </div>
+        </div>
+        <% include partials/footer %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

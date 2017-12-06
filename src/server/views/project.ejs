@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Yaroslav Zghurovskyi">
+    <meta name="description" content="About project <%= project.name %>">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/journal/bootstrap.min.css" type="text/css">
+    <title><%= project.name %></title>
+</head>
+<body>
+    <% include partials/navbar %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-2">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object img-rounded" src="<%=project.imageUrl%>" width="300" height="300" alt="<%= project.name %> logo">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading"><%= project.name %></h2>
+                        <table style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <th>Project lead</th>
+                                    <td><%= project.lead %></td>
+                                <tr>
+                                    <th>Team members</th>
+                                    <td><%= project.members %> persons</td>
+                                </tr>
+                                <tr>
+                                    <th>Start date</th>
+                                    <td><%=new Date(project.start_date).toLocaleString()%></td>
+                                </tr>
+                                <tr>
+                                    <th>Velocity</th>
+                                    <td><%= project.team_velocity %> man-hours</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal">
+                            Delete project
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item-about">
+            <p><%= project.about %></p>
+        </div>
+        <% include partials/footer %>
+    </div>
+    <% include partials/deletemodal %>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+</body>
+</html>
